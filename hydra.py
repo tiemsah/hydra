@@ -4,9 +4,7 @@ import platform
 import getpass
 import sys
 import time
-from gtts import gTTS
-from playsound import playsound
-
+from text_to_speech import speak
 # info
 windows = []
 for info in sys.getwindowsversion():
@@ -134,10 +132,7 @@ while True:
                 target = " ".join(cml[2:])
             else:
                 language = "en"
-            speech = gTTS(text=target, lang=language, slow=False)
-            speech.save(f"audio/{target}.mp3")
-            playsound(f"audio/{target}.mp3")
-            os.remove(f"audio/{target}.mp3")
+            speak(target, language)
     # exit
     elif cmd == "exit":
         if len(cml) == 1:
