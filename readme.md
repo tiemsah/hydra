@@ -38,6 +38,8 @@ BYE!
 9 : mkdir
 8 : touch
 9 : info
+10 : clear
+11 : new line
 ````
 # MY SOCIAL MEDIA
 ## instagram -> [tiemsah](https://instagram.com/tiemsah)
