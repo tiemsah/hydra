@@ -35,6 +35,9 @@ BYE!
 4 : echo
 5 : cat
 6 : pwd
+9 : mkdir
+8 : touch
+9 : info
 ````
 # MY SOCIAL MEDIA
 ## instagram -> [tiemsah](https://instagram.com/tiemsah)
