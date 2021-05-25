@@ -25,7 +25,7 @@ while True:
     target = " ".join(cml[1:])
     # ls
     if cmd == "ls":
-        if len(cml) == 1 and len(cml) < 2:
+        if len(cml) == 1:
             files = os.listdir()
             print(f"total = [{len(files)}]")
             for file in files:
@@ -240,11 +240,21 @@ while True:
             pass
         else:
             print("error")
-    # exit
+    # clear
+    if cmd == "clear":
+        if len(cml) == 1:
+            os.system("cls")
+        else:
+            print("error")
+    # exit and next line
     elif cmd == "exit":
         if len(cml) == 1:
             exit()
         else:
             print("error")
     else:
-        print(f"[{cmd}] -> not found")
+        item = " ".join(cml)
+        if item.isspace() or item == "" or item == " ":
+            pass
+        else:
+            print(f"[{cmd}] -> not found")
