@@ -241,7 +241,7 @@ while True:
         else:
             print("error")
     # clear
-    if cmd == "clear":
+    elif cmd == "clear":
         if len(cml) == 1:
             os.system("cls")
         else:
