@@ -5,6 +5,12 @@ import getpass
 import sys
 import time
 from text_to_speech import speak
+from touch import touch
+import platform
+import socket
+import psutil
+import uuid
+import re
 # info
 windows = []
 for info in sys.getwindowsversion():
@@ -53,8 +59,7 @@ while True:
                             else:
                                 print(f"{mtime}\t<FILE>\t{file}")
                         else:
-                            mtime = time.strftime("%d/%m/%Y\t%H:%M",
-                                                  time.localtime(os.path.getmtime(target + "\\" + file)))
+                            mtime = time.strftime("%d/%m/%Y\t%H:%M", time.localtime(os.path.getmtime(target + "\\" + file)))
                             if os.path.isdir(target + "\\" + file):
                                 print(f"{mtime}\t<DIR>\t{file}")
                             else:
@@ -133,6 +138,108 @@ while True:
             else:
                 language = "en"
             speak(target, language)
+    # mkdir
+    elif cmd == "mkdir":
+        if len(cml) > 1:
+            path = "."
+            names = cml[1:]
+            for name in names:
+                try:
+                    os.mkdir(f"{path}/{name}")
+                except FileExistsError:
+                    print(f"already created -> [{name}]")
+                except PermissionError:
+                    print("PermissionError")
+                except FileNotFoundError:
+                    print("error")
+                else:
+                    print(f"dir created -> [{name}]")
+        else:
+            print("error")
+    # touch
+    elif cmd == "touch":
+        if len(cml) > 1:
+            path = "."
+            names = cml[1:]
+            files = os.listdir()
+            for name in names:
+                try:
+                    if name in files:
+                        confirm = input(f"already created -> [{name}] do you want replace? (y = yes, n = no) ")
+                        if confirm == "y" or confirm == "yes":
+                            touch(f"{path}/{name}")
+                            print(f"file created -> [{name}]")
+                        else:
+                            print("ok")
+                    else:
+                        touch(f"{path}/{name}")
+                        print(f"file created -> [{name}]")
+                except FileExistsError:
+                    print(f"already created -> [{name}]")
+                except PermissionError:
+                    print("PermissionError")
+                except FileNotFoundError:
+                    print("error")
+                else:
+                    pass
+        else:
+            print("error")
+    # rm
+    elif cmd == "rm":
+        if len(cml) > 1:
+            pass
+        else:
+            print("error")
+    # rn
+    elif cmd == "rn":
+        if len(cml) > 1:
+            pass
+        else:
+            print("error")
+    # rmdir
+    elif cmd == "rmdir":
+        if len(cml) > 1:
+            pass
+        else:
+            print("error")
+    # cp
+    elif cmd == "cp":
+        if len(cml) > 1:
+            pass
+        else:
+            print("error")
+    # mv
+    elif cmd == "mv":
+        if len(cml) > 1:
+            pass
+        else:
+            print("error")
+    # info
+    elif cmd == "info":
+        if len(cml) == 1:
+            print(f"platform\t\t[{platform.system()}]")
+            print(f"platform release\t[{platform.release()}]")
+            print(f"platform version\t[{platform.version()}]")
+            print(f"architecture\t\t[{platform.machine()}]")
+            print(f"hostname\t\t[{platform.node()}]")
+            print(f"ip address\t\t[{socket.gethostbyname(platform.node())}]")
+            print(f"mac address\t\t[{':'.join(re.findall('..', '%012x' % uuid.getnode()))}]")
+            print(f"processor\t\t[{platform.processor()}]")
+            print(f"ram\t\t\t[{str(round(psutil.virtual_memory().total / (1024.0 **3)))}] GB")
+        else:
+            print("error")
+    # netstat
+    elif cmd == "netstat":
+        if len(cml) == 1:
+            pass
+        else:
+            print("error")
+    # ifconfig
+    elif cmd == "ifconfig":
+        if len(cml) == 1:
+            pass
+        else:
+            print("error")
     # exit
     elif cmd == "exit":
         if len(cml) == 1:
