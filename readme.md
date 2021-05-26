@@ -2,6 +2,7 @@
 **_FAST AND EASY_**
 
 ## NOTE: BETA VERSION ##
+## NOTE: MULTI COMMAND -> COMING SOON ##
 ## NOTE: STABLE VERSION -> COMING SOON ##
 
 __SOURCE CODE -> [here](hydra.py)__
